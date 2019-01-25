@@ -44,7 +44,18 @@ class Instructor extends Person {
     grade (student, subject){
         return `${student.name} receives a perfect score on ${subject}`;
     }
+    graduate (student){
+        let min = -100;
+        let max = 100;
+        let randomNum = Math.round(Math.random() * (max - min) + min);
+        student.grade = randomNum + student.grade;
+        if (student.grade >= 70){
+            return `Congratulations, you have a grade of ${student.grade}, which is enough to graduate from Lambda School!`;
+        }
+        else return `You'll need to study a bit more and get a much higher score than ${student.grade} if you want to graduate from Lambda School!`;
+    }
 }
+
 
 // #### Student
 
@@ -65,6 +76,7 @@ class Student extends Person {
         this.previousBackground = attributes.previousBackground;
         this.className = attributes.className;
         this.favSubjects = attributes.favSubjects;
+        this.grade = attributes.grade;
     }
     listsSubjects (){
         return this.favSubjects;
@@ -128,7 +140,8 @@ const ronny = new Student ({
       gender: 'male',
       previousBackground: 'Geologist',
       className: 'WEBPT4',
-      favSubjects: 'Computer Science'
+      favSubjects: 'Computer Science',
+      grade: Math.round(Math.random() * 100)
 });
 
 const brandon = new Student ({
@@ -138,7 +151,8 @@ const brandon = new Student ({
     gender: 'male',
     previousBackground: 'Tech Specialist',
     className: 'WEBFT17',
-    favSubjects: ['Computer Science', 'Math']
+    favSubjects: ['Computer Science', 'Math'],
+    grade: Math.round(Math.random() * 100)
 });
 
 const chance = new ProjectManagers ({
@@ -167,24 +181,31 @@ const carlos = new ProjectManagers ({
 
 
 
-//instructors
-console.log(fred.demo('Closures and Callbacks'));
-console.log(fred.grade(ronny, 'Computer Science'));
-console.log(fred.catchPhrase);
-console.log(cameron.demo('Array methods'));
-console.log(cameron.grade(ronny, 'JS-IV assignment'));
-console.log(cameron.catchPhrase);
+// //instructors
+// console.log(fred.demo('Closures and Callbacks'));
+// console.log(fred.grade(ronny, 'Computer Science'));
+// console.log(fred.catchPhrase);
+// console.log(cameron.demo('Array methods'));
+// console.log(cameron.grade(ronny, 'JS-IV assignment'));
+// console.log(cameron.catchPhrase);
 
-//students
-console.log(ronny.listsSubjects());
-console.log(ronny.PRAssignment('JS-IV'));
-console.log(ronny.sprintChallenge('JavaScript'));
-console.log(brandon.listsSubjects());
-console.log(brandon.PRAssignment('JS-III'));
-console.log(brandon.sprintChallenge('CSS'));
+// //students
+// console.log(ronny.listsSubjects());
+// console.log(ronny.PRAssignment('JS-IV'));
+// console.log(ronny.sprintChallenge('JavaScript'));
+// console.log(brandon.listsSubjects());
+// console.log(brandon.PRAssignment('JS-III'));
+// console.log(brandon.sprintChallenge('CSS'));
 
-//PMs
-console.log(chance.standUp('webpt4_chance'));
-console.log(chance.debugsCode(ronny, 'JavaScript'));
-console.log(carlos.standUp('webpt4_carlos'));
-console.log(carlos.debugsCode(brandon, 'React'));
+// //PMs
+// console.log(chance.standUp('webpt4_chance'));
+// console.log(chance.debugsCode(ronny, 'JavaScript'));
+// console.log(carlos.standUp('webpt4_carlos'));
+// console.log(carlos.debugsCode(brandon, 'React'));
+
+
+//stretch
+console.log(chance.graduate(ronny));
+console.log(cameron.graduate(brandon));
+console.log(fred.graduate(ronny));
+console.log(carlos.graduate(brandon));
